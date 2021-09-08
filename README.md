@@ -15,17 +15,13 @@ Check the example files
 
 ```python 
 import numpy as np
-import os
-import math
-
 import pyximport
 _ = pyximport.install()
 from math_func_cython import solveFBern
 
 mu = [0.6, 0.5]
 
-w, Tinv = solveFBern(np.sort(mu)[::-1])
-
+w, Tinv = solveFBern(np.ascontiguousarray(np.sort(mu)[::-1]))
 print("T^(-1): {}".format(Tinv))
 print("Sample complexity: {}".format(1/Tinv))
 print("Optimal weights: {}".format(w))
